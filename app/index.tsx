@@ -19,6 +19,11 @@ export default function Index() {
       {/* Centered Content */}
       <View className="flex-1 justify-center items-center">
         {/* App Title */}
+        <Image
+          source={require("../assets/images/logo.png")} // Update to use 'require'
+          style={{ width: 150, height: 150 }} // Add explicit width and height
+          className="mb-4"
+        />
         <Text className="text-3xl font-pextrabold text-white mb-4">E-Log Book</Text>
 
         {/* Logo */}

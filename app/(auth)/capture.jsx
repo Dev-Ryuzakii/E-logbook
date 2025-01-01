@@ -82,9 +82,19 @@ const Capture = () => {
     );
   };
 
+  // New Function: Reset Profile Data
+  const resetForm = () => {
+    setForm({
+      gender: "",
+      yearsOfStudy: "",
+      photoURL: null,
+    });
+    Alert.alert("Form Reset", "Profile form has been reset.");
+  };
+
   // Function to submit profile data
   const submit = async () => {
-    if (!form.gender || !form.yearsOfStudy || !form.photoURL) {
+    if (!form.gender || !form.photoURL) {
       Alert.alert("Validation Error", "Please fill in all fields and upload a photo.");
       return;
     }
@@ -115,7 +125,6 @@ const Capture = () => {
   const setGender = (selectedGender) => {
     setForm((prevForm) => ({ ...prevForm, gender: selectedGender }));
   };
-
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -188,20 +197,14 @@ const Capture = () => {
           placeholder="Select your gender"
         />
 
-        <FormField
-          title="Year of Study"
-          value={form.yearsOfStudy}
-          handleChangeText={(e) => setForm({ ...form, yearsOfStudy: e })}
-          otherStyles="mt-7"
-          placeholder="Enter your year of study"
-        />
-
         <CustomButton
           title="Complete Profile"
           handlePress={submit}
           isLoading={isSubmitting}
           containerStyles="mt-8 w-full h-14"
         />
+
+        
       </ScrollView>
     </SafeAreaView>
   );
