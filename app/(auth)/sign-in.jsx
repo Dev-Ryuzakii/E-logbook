@@ -35,7 +35,7 @@ const SignIn = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex h-full bg-white">
       <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}>
         <View className="w-full px-6 my-6">
           {/* Title */}
@@ -59,7 +59,7 @@ const SignIn = () => {
             handleChangeText={(e) => setForm({ ...form, password: e })}
             otherStyles="mt-6"
             placeholder="Enter your password"
-            secureTextEntry
+            
           />
 
           {/* Remember Me and Forgot Password */}
@@ -89,7 +89,7 @@ const SignIn = () => {
           />
 
           {/* Sign-Up Link */}
-          <View className="mt-5 text-center px-20">
+          <View className="mt-5 text-center px-24">
             <Text className="text-base text-gray-500">
               Don't have an account?{" "}
               <Link href="/sign-up">

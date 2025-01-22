@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Upload = () => {
+const Elogbook = () => {
   return (
     <View>
-      <Text>Upload</Text>
+      <Text>Elogbook</Text>
     </View>
   )
 }
 
-export default Upload
+export default Elogbook

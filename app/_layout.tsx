@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
+import { AuthProvider } from "../context/AuthProvider";
+import { View } from 'react-native';
 
-import {AuthProvider} from "../context/AuthProvider"
-
-
+// Prevent the splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
+  // Load fonts
   const [fontsLoaded, error] = useFonts({
     "Poppins-Thin": require("../assets/fonts/Poppins-Thin.ttf"),
     "Poppins-ExtraLight": require("../assets/fonts/Poppins-ExtraLight.ttf"),
@@ -18,7 +19,6 @@ const RootLayout = () => {
     "Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
     "Poppins-ExtraBold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
     "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
-   
   });
 
   useEffect(() => {
@@ -35,12 +35,12 @@ const RootLayout = () => {
 
   return (
     <AuthProvider>
-    <Stack>
-      <Stack.Screen name="index" options={{headerShown: false}} />
-      <Stack.Screen name="(auth)" options={{headerShown: false}} />
-      <Stack.Screen name="(tabs)" options={{headerShown: false}} />
-    </Stack>
-     </AuthProvider> 
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </AuthProvider>
   );
 };
 

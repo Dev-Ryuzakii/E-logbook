@@ -70,7 +70,8 @@ const TabsLayout = () => {
           }}
         />
 
-        {/* Chat Tab */}
+        
+        {/* chat Tab */}
         <Tabs.Screen
           name="chat"
           options={{
@@ -80,23 +81,6 @@ const TabsLayout = () => {
               <TabIcon
                 icon={icons.chat}
                 name="Chat"
-                color={color}
-                focused={focused}
-              />
-            ),
-          }}
-        />
-
-        {/* Upload Tab */}
-        <Tabs.Screen
-          name="upload"
-          options={{
-            title: "Upload",
-            headerShown: false,
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon
-                icon={icons.upload}
-                name="Upload"
                 color={color}
                 focused={focused}
               />

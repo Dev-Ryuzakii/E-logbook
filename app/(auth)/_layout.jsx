@@ -40,6 +40,13 @@ const AuthLayout =  () => {
                         headerShown:false,
                     }}
                 />
+
+<Stack.Screen
+                    name="enterotp"
+                    options={{
+                        headerShown:false,
+                    }}
+                />
             </Stack>
         </>
     )

@@ -155,7 +155,7 @@ const submit = async () => {
             handleChangeText={(e) => setForm({ ...form, password: e })}
             otherStyles="mt-6"
             placeholder="Enter your password"
-            secureTextEntry={true}
+            
           />
 
           {/* Submit Button */}
@@ -169,7 +169,7 @@ const submit = async () => {
           </View>
 
           {/* Log In Link */}
-          <View className="mt-5 text-center px-24">
+          <View className="mt-5 text-center px-32">
             <Text className="text-base text-gray-500">
               Have an account?{" "}
               <Text

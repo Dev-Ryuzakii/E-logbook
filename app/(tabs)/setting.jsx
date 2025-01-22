@@ -8,14 +8,18 @@ import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
 const Setting = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    name: "N/A",
+    email: "",
+    regNo: "",
+    profileImage: null
+  });
   const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         try {
-          // Fetch user document from Firestore
           const userDocRef = doc(db, "users", currentUser.uid);
           const userDoc = await getDoc(userDocRef);
           if (userDoc.exists()) {
@@ -46,94 +50,90 @@ const Setting = () => {
     router.replace("/");
   };
 
-  if (!user) {
-    return (
-      <View className="flex-1 items-center justify-center bg-white">
-        <Text className="text-lg">Loading...</Text>
-      </View>
-    );
-  }
-
   return (
-    <View className="flex-1 bg-white px-4">
+    <View className="flex-1 bg-white">
       {/* Header */}
-      <View className="flex-row items-center mt-6">
+      <View className="flex-row items-center p-4 pb-10 border-gray-200">
         <TouchableOpacity onPress={() => router.back()}>
-          <Image source={icons.back} resizeMode="contain" className="w-5 h-5" />
+          <Image source={icons.back} className="w-6 h-6" />
         </TouchableOpacity>
-        <Text className="text-xl font-bold ml-4">Settings</Text>
+        <Text className="text-xl font-semibold ml-2">Settings</Text>
       </View>
 
       {/* Profile Section */}
       <TouchableOpacity
-        className="flex-row items-center mt-8"
-        onPress={() => router.push("/profile")} // Navigate to "Chat" page
+        onPress={() => router.push("/profile")}
+        className="flex-row items-center p-4 border-b border-gray-200"
       >
-        <Image
-          source={{
-            uri: user.profileImage || "https://via.placeholder.com/150", // Fallback image
-          }}
-          resizeMode="cover"
-          className="w-16 h-16 rounded-full"
-        />
+        <View className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden">
+          <Image
+            source={user.profileImage ? { uri: user.profileImage } : icons.defaultProfile}
+            className="w-full h-full"
+            defaultSource={icons.defaultProfile}
+          />
+        </View>
         <View className="ml-4">
-          <Text className="text-lg font-semibold">{user.name || "N/A"}</Text>
-          <Text className="text-sm text-gray-500">{user.email}</Text>
+          <Text className="text-lg font-semibold">{user.name}</Text>
+          <Text className="text-gray-600">{user.email}</Text>
         </View>
       </TouchableOpacity>
 
       {/* Registration Number */}
-      <View className="mt-6">
-        <Text className="text-base font-medium text-gray-700">Registration Number:</Text>
+      <View className="p-4 border-b border-gray-200">
+        <Text className="text-gray-600">Registration Number:</Text>
         <View className="flex-row items-center mt-2">
-          <Text className="text-lg font-semibold mr-4">{user.regNo || "N/A"}</Text>
-          <TouchableOpacity onPress={copyToClipboard}>
-            <Image source={icons.copy} className="w-5 h-5" resizeMode="contain" />
+          <Text className="text-lg">{user.regNo || "N/A"}</Text>
+          <TouchableOpacity onPress={copyToClipboard} className="ml-2">
+            <Image source={icons.copy} className="w-5 h-5" />
           </TouchableOpacity>
         </View>
       </View>
 
-      {/* Divider */}
-      <View className="border-b border-gray-200 my-6" />
-
       {/* Navigation Options */}
       <TouchableOpacity
         onPress={() => router.push("/account")}
-        className="py-4 border-b border-gray-200"
+        className="py-4 px-4 border-b border-gray-200"
       >
-        <Text className="text-base font-medium">Account</Text>
+        <Text className="text-lg">Account</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => router.push("/logbook")}
-        className="py-4 border-b border-gray-200"
+        onPress={() => router.push("/elogbook")}
+        className="py-4 px-4 border-b border-gray-200"
       >
-        <Text className="text-base font-medium">Logbook</Text>
+        <Text className="text-lg">Logbook</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => router.push("/language")}
-        className="py-4 border-b border-gray-200"
+        className="py-4 px-4 border-b border-gray-200"
       >
-        <Text className="text-base font-medium">Language</Text>
+        <Text className="text-lg">Language</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => router.push("/terms-and-conditions")}
-        className="py-4 border-b border-gray-200"
+        className="py-4 px-4 border-b border-gray-200"
       >
-        <Text className="text-base font-medium">Terms and Conditions</Text>
+        <Text className="text-lg">Terms and Conditions</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => router.push("/appearance")}
+        className="py-4 px-4 border-b border-gray-200"
+      >
+        <Text className="text-lg">Appearance</Text>
       </TouchableOpacity>
 
       {/* Logout Button */}
-      <View className="mt-8">
-        <TouchableOpacity
-          onPress={handleLogout}
-          className="bg-primary my-28 py-3 px-4 rounded-full items-center"
-        >
-          <Text className="text-white text-base font-medium">Log Out</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        onPress={handleLogout}
+        className="mx-4 mt-8 p-4 bg-red-500 rounded-lg"
+      >
+        <Text className="text-white text-center text-lg font-semibold">
+          Log Out
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };

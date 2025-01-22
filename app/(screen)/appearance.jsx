@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Chat = () => {
+const Appearance = () => {
   return (
     <View>
-      <Text>Upload</Text>
+      <Text>Appearance</Text>
     </View>
   )
 }
 
-export default Chat
+export default Appearance

@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Chat = () => {
+const TermsAndCondition = () => {
   return (
     <View>
-      <Text>Upload</Text>
+      <Text>TermsAndCondition</Text>
     </View>
   )
 }
 
-export default Chat
+export default TermsAndCondition
